@@ -1,0 +1,655 @@
+{
+  "users": [
+    {
+      "name": "小夢",
+      "lineName": "Jessica Liu",
+      "titles": [
+        "小組長",
+        "區長"
+      ],
+      "level": "領袖班結業",
+      "core": true,
+      "id": "member-001"
+    },
+    {
+      "name": "哆啦",
+      "lineName": "哆啦",
+      "titles": [
+        "核心同工"
+      ],
+      "level": "領袖班結業",
+      "core": true,
+      "id": "member-002"
+    },
+    {
+      "name": "小四",
+      "lineName": "🍀小四",
+      "titles": [
+        "核心同工"
+      ],
+      "level": "領袖班結業",
+      "core": true,
+      "id": "member-003"
+    },
+    {
+      "name": "育駿",
+      "lineName": "育駿",
+      "titles": [
+        "組員"
+      ],
+      "level": "領袖班結業",
+      "core": false,
+      "id": "member-004"
+    },
+    {
+      "name": "詠心",
+      "lineName": "Amy 張詠心",
+      "titles": [
+        "組員"
+      ],
+      "level": "領袖班結業",
+      "core": false,
+      "id": "member-005"
+    },
+    {
+      "name": "瑜瑄",
+      "lineName": "Hsuan",
+      "titles": [
+        "組員"
+      ],
+      "level": "領袖班結業",
+      "core": false,
+      "id": "member-006"
+    },
+    {
+      "name": "週四A組長",
+      "lineName": "Grace",
+      "titles": [
+        "小組長"
+      ],
+      "level": "領袖班結業",
+      "core": true,
+      "id": "member-007"
+    },
+    {
+      "name": "週四B組長",
+      "lineName": "Mina",
+      "titles": [
+        "小組長"
+      ],
+      "level": "領袖班結業",
+      "core": true,
+      "id": "member-008"
+    },
+    {
+      "name": "週四A組員",
+      "lineName": "Ariel",
+      "titles": [
+        "組員"
+      ],
+      "level": "門徒班（含在上）",
+      "core": false,
+      "id": "member-009"
+    },
+    {
+      "name": "週四B組員",
+      "lineName": "Lynn",
+      "titles": [
+        "組員"
+      ],
+      "level": "領袖班結業",
+      "core": false,
+      "id": "member-010"
+    }
+  ],
+  "defaultState": {
+    "currentUser": null,
+    "currentGroup": "monday",
+    "groups": {
+      "monday": {
+        "id": "monday",
+        "name": "週一小組",
+        "meetingDay": "週一",
+        "room": "505 教室",
+        "start": "19:30",
+        "prePrayer": "19:10",
+        "communionPosition": "敬拜後",
+        "communionReminder": "本週小組有領聖餐環節，邀請大家預備心，一同記念主耶穌為我們所成就的恩典。",
+        "leader": "小夢",
+        "overseer": "小夢",
+        "members": [
+          "小夢",
+          "哆啦",
+          "小四",
+          "育駿",
+          "詠心",
+          "瑜瑄"
+        ],
+        "access": {
+          "小夢": "manage",
+          "哆啦": "member",
+          "小四": "member",
+          "育駿": "member",
+          "詠心": "member",
+          "瑜瑄": "member"
+        },
+        "dates": [
+          {
+            "d": "10/5",
+            "type": "主日小組＋領聖餐",
+            "communion": true
+          },
+          {
+            "d": "10/12",
+            "type": "小組暫停",
+            "off": true
+          },
+          {
+            "d": "10/19",
+            "type": "主日小組"
+          },
+          {
+            "d": "10/26",
+            "type": "小組暫停",
+            "off": true
+          },
+          {
+            "d": "11/2",
+            "type": "主日小組＋領聖餐",
+            "communion": true
+          },
+          {
+            "d": "11/9",
+            "type": "主日小組"
+          },
+          {
+            "d": "11/16",
+            "type": "主日小組"
+          },
+          {
+            "d": "11/23",
+            "type": "主日小組"
+          },
+          {
+            "d": "11/30",
+            "type": "主日小組"
+          }
+        ],
+        "assignments": {
+          "10/5": {
+            "會前禱告": "瑜瑄",
+            "破冰": "瑜瑄",
+            "敬拜": "小夢",
+            "音控": "詠心",
+            "見證": "育駿",
+            "話語": "小四",
+            "異象報告": "小夢"
+          },
+          "10/19": {
+            "會前禱告": "瑜瑄",
+            "破冰": "瑜瑄",
+            "敬拜": "小夢",
+            "音控": "詠心",
+            "見證": "育駿",
+            "話語": "小四",
+            "異象報告": "小夢"
+          },
+          "11/2": {
+            "會前禱告": "詠心",
+            "破冰": "哆啦",
+            "敬拜": "詠心",
+            "音控": "瑜瑄",
+            "見證": "育駿",
+            "話語": "小四",
+            "異象報告": "小夢"
+          },
+          "11/9": {
+            "會前禱告": "育駿",
+            "破冰": "瑜瑄",
+            "敬拜": "育駿",
+            "音控": "小夢",
+            "見證": "詠心",
+            "話語": "哆啦",
+            "異象報告": "小夢"
+          },
+          "11/16": {
+            "會前禱告": "育駿",
+            "破冰": "詠心",
+            "敬拜": "育駿",
+            "音控": "小夢",
+            "見證": "哆啦",
+            "話語": "小四",
+            "異象報告": "小夢"
+          },
+          "11/23": {
+            "會前禱告": "瑜瑄",
+            "破冰": "育駿",
+            "敬拜": "瑜瑄",
+            "音控": "小夢",
+            "見證": "詠心",
+            "話語": "哆啦",
+            "異象報告": "小夢"
+          },
+          "11/30": {
+            "會前禱告": "哆啦",
+            "破冰": "詠心",
+            "敬拜": "哆啦",
+            "音控": "瑜瑄",
+            "見證": "育駿",
+            "話語": "小夢",
+            "異象報告": "小夢"
+          }
+        }
+      },
+      "thursdayA": {
+        "id": "thursdayA",
+        "name": "週四 A 小組",
+        "meetingDay": "週四",
+        "room": "503 教室",
+        "start": "19:30",
+        "prePrayer": "19:10",
+        "communionPosition": "敬拜後",
+        "communionReminder": "本週小組有領聖餐環節，邀請大家預備心，一同記念主耶穌的恩典與救贖。",
+        "leader": "週四A組長",
+        "overseer": "小夢",
+        "members": [
+          "週四A組長",
+          "週四A組員"
+        ],
+        "access": {
+          "週四A組長": "manage",
+          "週四A組員": "member",
+          "小夢": "view"
+        },
+        "dates": [
+          {
+            "d": "10/5",
+            "type": "主日小組＋領聖餐",
+            "communion": true
+          },
+          {
+            "d": "10/12",
+            "type": "小組暫停",
+            "off": true
+          },
+          {
+            "d": "10/19",
+            "type": "主日小組"
+          },
+          {
+            "d": "10/26",
+            "type": "小組暫停",
+            "off": true
+          },
+          {
+            "d": "11/2",
+            "type": "主日小組＋領聖餐",
+            "communion": true
+          },
+          {
+            "d": "11/9",
+            "type": "主日小組"
+          },
+          {
+            "d": "11/16",
+            "type": "主日小組"
+          },
+          {
+            "d": "11/23",
+            "type": "主日小組"
+          },
+          {
+            "d": "11/30",
+            "type": "主日小組"
+          }
+        ],
+        "assignments": {
+          "10/5": {
+            "會前禱告": "週四A組長",
+            "破冰": "週四A組員",
+            "敬拜": "週四A組長",
+            "音控": "週四A組員",
+            "見證": "週四A組員",
+            "話語": "週四A組長",
+            "異象報告": "週四A組長"
+          },
+          "10/19": {
+            "會前禱告": "週四A組長",
+            "破冰": "週四A組員",
+            "敬拜": "週四A組長",
+            "音控": "週四A組員",
+            "見證": "週四A組員",
+            "話語": "週四A組長",
+            "異象報告": "週四A組長"
+          }
+        }
+      },
+      "thursdayB": {
+        "id": "thursdayB",
+        "name": "週四 B 小組",
+        "meetingDay": "週四",
+        "room": "502 教室",
+        "start": "20:00",
+        "prePrayer": "19:40",
+        "communionPosition": "敬拜後",
+        "communionReminder": "本週小組有領聖餐環節，邀請大家預備心，在主裡記念祂所成就的救恩。",
+        "leader": "週四B組長",
+        "overseer": "小夢",
+        "members": [
+          "週四B組長",
+          "週四B組員"
+        ],
+        "access": {
+          "週四B組長": "manage",
+          "週四B組員": "member",
+          "小夢": "view"
+        },
+        "dates": [
+          {
+            "d": "10/5",
+            "type": "主日小組＋領聖餐",
+            "communion": true
+          },
+          {
+            "d": "10/12",
+            "type": "小組暫停",
+            "off": true
+          },
+          {
+            "d": "10/19",
+            "type": "主日小組"
+          },
+          {
+            "d": "10/26",
+            "type": "小組暫停",
+            "off": true
+          },
+          {
+            "d": "11/2",
+            "type": "主日小組＋領聖餐",
+            "communion": true
+          },
+          {
+            "d": "11/9",
+            "type": "主日小組"
+          },
+          {
+            "d": "11/16",
+            "type": "主日小組"
+          },
+          {
+            "d": "11/23",
+            "type": "主日小組"
+          },
+          {
+            "d": "11/30",
+            "type": "主日小組"
+          }
+        ],
+        "assignments": {
+          "10/5": {
+            "會前禱告": "週四B組長",
+            "破冰": "週四B組員",
+            "敬拜": "週四B組長",
+            "音控": "週四B組員",
+            "見證": "週四B組員",
+            "話語": "週四B組長",
+            "異象報告": "週四B組長"
+          },
+          "10/19": {
+            "會前禱告": "週四B組長",
+            "破冰": "週四B組員",
+            "敬拜": "週四B組長",
+            "音控": "週四B組員",
+            "見證": "週四B組員",
+            "話語": "週四B組長",
+            "異象報告": "週四B組長"
+          }
+        }
+      }
+    },
+    "scheduleStatus": {
+      "monday": "published",
+      "thursdayA": "draft",
+      "thursdayB": "draft"
+    },
+    "customSurveys": {
+      "monday": [
+        {
+          "id": 1,
+          "title": "10/19 小組晚餐",
+          "deadline": "10/18 22:00",
+          "status": "open"
+        }
+      ],
+      "thursdayA": [
+        {
+          "id": 2,
+          "title": "11 月聚餐調查",
+          "deadline": "10/25 21:00",
+          "status": "draft"
+        }
+      ],
+      "thursdayB": []
+    },
+    "leaveRequests": {
+      "monday": [
+        {
+          "id": 100,
+          "date": "11/16",
+          "service": "敬拜",
+          "from": "育駿",
+          "reason": "工作臨時有事",
+          "status": "open",
+          "substitute": null
+        }
+      ],
+      "thursdayA": [],
+      "thursdayB": []
+    },
+    "prayerGroups": {
+      "monday": [
+        {
+          "name": "晨禱 A 組",
+          "people": [
+            "哆啦",
+            "育駿"
+          ],
+          "time": "週四 08:00–08:30",
+          "status": "confirmed"
+        },
+        {
+          "name": "RPG A 組",
+          "people": [
+            "詠心",
+            "瑜瑄"
+          ],
+          "time": "週三 21:30–22:00",
+          "status": "confirmed"
+        }
+      ],
+      "thursdayA": [],
+      "thursdayB": []
+    },
+    "changeLogs": {
+      "monday": [
+        "11/10 22:15｜小夢發布 10–11 月正式服事表"
+      ],
+      "thursdayA": [],
+      "thursdayB": []
+    },
+    "cycles": {
+      "monday": {
+        "current": "2026 10–11 月",
+        "next": "2026 12 月–2027 1 月",
+        "nextStartYear": 2026,
+        "nextStartMonth": 12,
+        "durationMonths": 2,
+        "surveyOpen": "2026/11/10",
+        "surveyDeadline": "2026/11/17",
+        "publishDeadline": "2026/11/23",
+        "nextCreated": false,
+        "nextStatus": "尚未建立",
+        "pausedDates": [],
+        "nextDates": [
+          "12/7",
+          "12/14",
+          "12/21",
+          "1/11",
+          "1/18",
+          "1/25"
+        ]
+      },
+      "thursdayA": {
+        "current": "2026 10–11 月",
+        "next": "2026 12 月–2027 1 月",
+        "nextStartYear": 2026,
+        "nextStartMonth": 12,
+        "durationMonths": 2,
+        "surveyOpen": "2026/11/10",
+        "surveyDeadline": "2026/11/17",
+        "publishDeadline": "2026/11/23",
+        "nextCreated": false,
+        "nextStatus": "尚未建立",
+        "pausedDates": [],
+        "nextDates": [
+          "12/3",
+          "12/10",
+          "12/17",
+          "1/7",
+          "1/14",
+          "1/21"
+        ]
+      },
+      "thursdayB": {
+        "current": "2026 10–11 月",
+        "next": "2026 12 月–2027 1 月",
+        "surveyOpen": "2026/11/10",
+        "surveyDeadline": "2026/11/17",
+        "publishDeadline": "2026/11/23",
+        "nextCreated": false,
+        "nextStatus": "尚未建立"
+      }
+    },
+    "lineTemplates": {
+      "monday": "《週一小組 》Happy Monday\n唯一開心的事就是可以見到你的實體小組，期待在教會{ROOM}一起精心時刻~\n\n@All\n\n本週由 @{PRAYER} 帶領大家{PREPRAYER}一起會前禱告，有服事同工請共同參與會前禱告，也邀請可以提早來的朋友一起來參與。\n\n{COMMUNION}破冰： @{ICE}\n敬拜： @{WORSHIP}\n音控： @{AUDIO}\n見證：@{TESTIMONY}\n話語： @{WORD}",
+      "thursdayA": "《週四小組》\n期待大家一起來到小組，彼此連結、一起敬拜神。\n\n@All\n\n本週由 @{PRAYER} 帶領大家{PREPRAYER}一起會前禱告。\n\n{COMMUNION}破冰： @{ICE}\n敬拜： @{WORSHIP}\n音控： @{AUDIO}\n見證：@{TESTIMONY}\n話語： @{WORD}",
+      "thursdayB": "《週四小組》\n期待大家一起來到小組，彼此連結、一起敬拜神。\n\n@All\n\n本週由 @{PRAYER} 帶領大家{PREPRAYER}一起會前禱告。\n\n{COMMUNION}破冰： @{ICE}\n敬拜： @{WORSHIP}\n音控： @{AUDIO}\n見證：@{TESTIMONY}\n話語： @{WORD}"
+    },
+    "prayerSurvey": {
+      "monday": {
+        "哆啦": {
+          "mode": "晨禱",
+          "days": [
+            "週四"
+          ],
+          "slots": [
+            "08:00",
+            "08:30"
+          ],
+          "all": false,
+          "pass": false,
+          "note": "週四 8:00-9:00"
+        },
+        "小四": {
+          "mode": "",
+          "days": [],
+          "slots": [],
+          "all": false,
+          "pass": true,
+          "note": "暫時 pass"
+        },
+        "育駿": {
+          "mode": "晨禱",
+          "days": [
+            "週一",
+            "週二",
+            "週三",
+            "週四",
+            "週五"
+          ],
+          "slots": [
+            "08:00"
+          ],
+          "all": true,
+          "pass": false,
+          "note": "8:00-8:30"
+        },
+        "詠心": {
+          "mode": "RPG",
+          "days": [
+            "週三",
+            "週四"
+          ],
+          "slots": [
+            "21:30",
+            "22:00"
+          ],
+          "all": false,
+          "pass": false,
+          "note": "三或四 9:30 後"
+        },
+        "瑜瑄": {
+          "mode": "RPG",
+          "days": [
+            "週四"
+          ],
+          "slots": [
+            "20:00",
+            "20:30",
+            "21:00"
+          ],
+          "all": false,
+          "pass": false,
+          "note": "週四 20:00-21:30"
+        }
+      },
+      "thursdayA": {},
+      "thursdayB": {}
+    },
+    "prayerDraft": {
+      "monday": [],
+      "thursdayA": [],
+      "thursdayB": []
+    },
+    "prayerFinal": {
+      "monday": [],
+      "thursdayA": [],
+      "thursdayB": []
+    },
+    "notifications": {
+      "monday": [
+        {
+          "id": 1,
+          "type": "cycle",
+          "title": "2026 12 月–2027 1 月｜服事＋禱告調查",
+          "message": "請填寫下一期可服事日期與 RPG／晨禱可配合時間。",
+          "target": "survey",
+          "deadline": "2026/11/17",
+          "active": false
+        },
+        {
+          "id": 2,
+          "type": "custom",
+          "title": "10/19 小組晚餐",
+          "message": "請完成晚餐調查。",
+          "target": "special",
+          "deadline": "10/18 22:00",
+          "active": true
+        }
+      ],
+      "thursdayA": [
+        {
+          "id": 3,
+          "type": "custom",
+          "title": "11 月聚餐調查",
+          "message": "請完成聚餐調查。",
+          "target": "special",
+          "deadline": "10/25 21:00",
+          "active": false
+        }
+      ],
+      "thursdayB": []
+    }
+  }
+}

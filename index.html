@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>小組生活 Web App｜多小組測試版 v4</title>
+    
+</head>
+
+<body><div class="demo-banner">測試版：選名字不會驗證身分，請只使用測試資料。<span id="storageStatus" role="status">載入中…</span> <button id="retrySave" hidden>重試儲存</button> <button id="reloadData">重新載入資料</button></div>
+
+    <div id="loginScreen" class="login-wrap">
+        <div class="login-card">
+            <h1>小組生活</h1>
+            <div class="sub">多小組 Web App 測試登入</div>
+            <div class="field">
+                <label>選擇測試帳號</label>
+                <select id="loginUser"></select>
+            </div>
+            <div class="notice" style="margin-top:12px">
+                選擇名字測試操作流程；任何使用者都能切換角色。正式登入將在後續版本加入。
+            </div>
+            <button class="btn primary" style="width:100%;margin-top:14px" id="loginButton" disabled data-click="login()">登入</button>
+        </div>
+    </div>
+
+    <div id="appScreen" class="app hidden">
+        <div class="topbar">
+            <div class="brand">小組生活 <small>多小組測試版 v4</small></div>
+            <div class="controls">
+                <span class="small muted label">目前帳號</span><b id="currentUserLabel"></b>
+                <select id="groupSelect"></select>
+                <button class="btn" data-click="logout()">登出</button>
+            </div>
+        </div>
+        <div class="shell">
+            <aside class="side" id="sideNav"></aside>
+            <main class="main">
+                <section id="dashboard" class="page active"></section>
+                <section id="home" class="page"></section>
+                <section id="survey" class="page"></section>
+                <section id="schedule" class="page"></section>
+                <section id="prayer" class="page"></section>
+                <section id="substitute" class="page"></section>
+                <section id="special" class="page"></section>
+                <section id="guide" class="page"></section>
+                <section id="profile" class="page"></section>
+                <section id="admin" class="page"></section>
+            </main>
+        </div>
+    </div>
+    <div id="mobileNav" class="mobilebar"></div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
