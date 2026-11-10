@@ -8,7 +8,12 @@
     
 </head>
 
-<body><div class="demo-banner">測試版：選名字不會驗證身分，請只使用測試資料。<span id="storageStatus" role="status">載入中…</span> <button id="retrySave" hidden>重試儲存</button> <button id="reloadData">重新載入資料</button></div>
+<body>
+    <div id="storageError" class="storage-error" hidden>
+        <span id="storageStatus" role="alert"></span>
+        <button id="retrySave" hidden>重試儲存</button>
+        <button id="reloadData">重新載入資料</button>
+    </div>
 
     <div id="loginScreen" class="login-wrap">
         <div class="login-card">

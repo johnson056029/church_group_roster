@@ -497,9 +497,9 @@
         }
     
 
-.demo-banner { padding: 10px 16px; background: #fff3cd; color: #573f00; font-size: 14px; }
-#storageStatus { display: inline-block; margin-left: 12px; font-weight: 600; }
-.demo-banner button { margin: 4px; }
+.storage-error { padding: 10px 16px; background: var(--badSoft); color: var(--bad); font-size: 14px; }
+#storageStatus { font-weight: 600; }
+.storage-error button { margin: 4px; }
 .mobilebar:empty { display: none; }
 button:disabled { cursor: not-allowed; opacity: .55; }
 details { padding: 10px 0; border-bottom: 1px solid var(--line); }

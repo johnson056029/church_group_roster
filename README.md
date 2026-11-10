@@ -13,7 +13,7 @@ npm run dev
 
 先依下方說明設定 Supabase，再開啟終端顯示的 localhost 網址。此版本只使用 Supabase 資料庫，不再將業務資料存入 localStorage，也不載入本機範例作為備援。缺少設定時會顯示錯誤並停用選名字進入的按鈕；正式建置會直接失敗。不要直接雙擊開啟 HTML。
 
-頁面上方會顯示「儲存中」、「已儲存」或錯誤。成功訊息必須以狀態列為準。雲端設定不完整或連線失敗時不會偷偷改成本機儲存。
+正常使用時不顯示頂部橫幅或連線／儲存成功訊息；載入或儲存失敗時才顯示錯誤與重試／重新載入按鈕。雲端設定不完整或連線失敗時不會偷偷改成本機儲存。
 
 ## 連接 Supabase 測試資料庫
 
@@ -30,7 +30,7 @@ VITE_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
 VITE_SUPABASE_PUBLISHABLE_KEY=YOUR_PUBLIC_KEY
 ```
 
-4. 重新啟動 `npm run dev`。載入完成會顯示「已連接 Supabase 資料庫」，修改儲存成功後顯示「已儲存至 Supabase」。用不同裝置選名字即可驗證共用資料。
+4. 重新啟動 `npm run dev`。資料庫載入完成後即可選名字進入；正常連線與儲存不顯示橫幅。用不同裝置選名字並重新載入，即可驗證共用資料。
 
 這兩個 VITE 設定會打包進瀏覽器，必須使用公開金鑰，**不能使用 service_role 或 secret key**。實際環境檔已排除於 Git。
 

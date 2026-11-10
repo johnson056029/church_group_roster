@@ -10,7 +10,10 @@ let repository, baseline = [], ready = false, dirty = false, timer, pending, blo
 let refresh = () => {};
 export function onRefresh(callback) { refresh = callback; }
 export function loadSession() { try { return JSON.parse(sessionStorage.getItem(sessionKey) || 'null'); } catch { return null; } }
-function status(message) { document.getElementById('storageStatus').textContent = message; }
+function status(message, isError = false) {
+  document.getElementById('storageError').hidden = !isError;
+  document.getElementById('storageStatus').textContent = isError ? message : '';
+}
 function setSnapshot(rows) {
   const snapshot = fromRecords(rows);
   users.splice(0, users.length, ...snapshot.users);
@@ -30,7 +33,7 @@ export async function initialize() {
     ready = true;
     status('已連接 Supabase 資料庫');
     return true;
-  } catch (error) { status(`載入失敗：${error.message}。請檢查設定後重新整理。`); return false; }
+  } catch (error) { status(`載入失敗：${error.message}。請檢查設定後重新整理。`, true); return false; }
 }
 export function save() {
   version++;
@@ -59,7 +62,7 @@ export async function flush() {
   } catch (error) {
     dirty = true;
     blocked = true;
-    status(`未儲存：${error.message}`);
+    status(`未儲存：${error.message}`, true);
     document.getElementById('retrySave').hidden = false;
     throw error;
   } finally { pending = null; }
@@ -80,14 +83,14 @@ export async function reloadData(manual = false) {
     const rows = await repository.load();
     if (version !== startedVersion || pending || (!manual && ['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement?.tagName))) return;
     const snapshot = fromRecords(rows);
-    if (!manual && !diffRecords(baseline, toRecords(snapshot.state, snapshot.users)).length) return;
+    if (!manual && !diffRecords(baseline, toRecords(snapshot.state, snapshot.users)).length) {savedStatus(); return;}
     clearTimeout(timer);
     setSnapshot(rows);
     dirty = blocked = false;
     document.getElementById('retrySave').hidden = true;
     savedStatus();
     refresh();
-  } catch (error) { status(`重新載入失敗：${error.message}`); }
+  } catch (error) { status(`重新載入失敗：${error.message}`, true); }
   finally { loading = false; }
 }
 export function startSync() {
