@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-開啟終端顯示的 localhost 網址。沒有設定 Supabase 時，會自動使用瀏覽器的 localStorage 儲存範例資料；重新整理仍保留，同來源的分頁共用資料，不同裝置或瀏覽器不會同步。不要直接雙擊開啟 HTML。
+先依下方說明設定 Supabase，再開啟終端顯示的 localhost 網址。此版本只使用 Supabase 資料庫，不再將業務資料存入 localStorage，也不載入本機範例作為備援。缺少設定時會顯示錯誤並停用選名字進入的按鈕；正式建置會直接失敗。不要直接雙擊開啟 HTML。
 
 頁面上方會顯示「儲存中」、「已儲存」或錯誤。成功訊息必須以狀態列為準。雲端設定不完整或連線失敗時不會偷偷改成本機儲存。
 
@@ -20,6 +20,7 @@ npm run dev
 1. 建立一個專用的 Supabase **測試專案**。
 2. 在 SQL Editor 依序執行：
    - [001_schema.sql](supabase/migrations/001_schema.sql)：建立 11 張表與兩個 RPC，預設關閉匿名存取。只需執行一次，不適用已有同名表的資料庫。
+   - [002_conflict_http_status.sql](supabase/migrations/002_conflict_http_status.sql)：將業務衝突改為 HTTP 409，避免 API 層自動重試。已執行過建表與 seeding 的專案也需要補執行此檔，不必重建資料。
    - [seed.sql](supabase/seed.sql)：載入模板範例資料。重新執行不會覆寫既有紀錄。
    - [enable-demo.sql](supabase/enable-demo.sql)：啟用共用測試資料的讀寫。
 3. 複製 [.env.example](.env.example) 為 `.env.local`，填入自己的 Project URL 與 **publishable key**（舊專案可用 anon key）：
@@ -29,11 +30,11 @@ VITE_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
 VITE_SUPABASE_PUBLISHABLE_KEY=YOUR_PUBLIC_KEY
 ```
 
-4. 重新啟動 `npm run dev`。畫面應顯示「已儲存至 Supabase」。用不同裝置選名字即可驗證共用資料。
+4. 重新啟動 `npm run dev`。載入完成會顯示「已連接 Supabase 資料庫」，修改儲存成功後顯示「已儲存至 Supabase」。用不同裝置選名字即可驗證共用資料。
 
 這兩個 VITE 設定會打包進瀏覽器，必須使用公開金鑰，**不能使用 service_role 或 secret key**。實際環境檔已排除於 Git。
 
-本機資料不會自動搬到雲端；切換後使用雲端的種子／既有資料。需要停止測試存取時，執行 [disable-demo.sql](supabase/disable-demo.sql)。
+舊版本留在瀏覽器的資料不會自動搬到雲端，也不會被刪除；新版只讀取雲端資料。sessionStorage 僅記住選擇的成員與小組，不儲存排班或調查。需要停止測試存取時，執行 [disable-demo.sql](supabase/disable-demo.sql)。
 
 ## 選名字模式的界線
 
@@ -71,7 +72,7 @@ VITE_SUPABASE_PUBLISHABLE_KEY=YOUR_PUBLIC_KEY
 
 ## GitHub 與 Netlify
 
-此資料夾已初始化為獨立 Git repo；尚未建立遠端 repo 或部署雲端。可在 GitHub 建立空白 repo，再於本目錄執行：
+此資料夾已初始化為獨立 Git repo。首次設定遠端時，可在 GitHub 建立空白 repo，再於本目錄執行（已完成者不必重做）：
 
 ```sh
 git add .
@@ -86,7 +87,9 @@ Netlify 選擇 Import an existing project，連接此 repo。設定已放在 [ne
 - Build command：`npm run build`。
 - Publish directory：`dist`。
 - Node.js：24。
-- 要使用雲端時，在 Netlify 加入上述兩個 `VITE_SUPABASE_*` 環境變數後重新部署；沒有設定則是每個瀏覽器各自儲存的本機展示模式。
+- 必須在 Netlify 加入上述兩個 `VITE_SUPABASE_*` 環境變數，供 Production 的建置使用，再重新部署。缺少任一變數會讓建置失敗；本機 `.env.local` 不會透過 GitHub 傳到 Netlify。
+- 若 repo 根目錄外還包著 `group-life` 資料夾，Base directory 設為 `group-life`，Publish directory 仍填 `dist`。
+- 若線上仍顯示「已儲存在此瀏覽器」，代表仍在使用舊版部署。請推送新版程式、設定環境變數並完成一次成功的部署；只修改環境變數不會改變已發布的檔案。
 
 ## 檢查與維護
 
@@ -97,8 +100,11 @@ npm run build
 
 測試使用 PGlite 執行實際 PostgreSQL schema / RPC，驗證預設存取限制、獨立回覆、同筆衝突、交易回滾與外鍵。這不取代真實 Supabase HTTP API 的連線驗收；提供雲端設定後仍需驗證兩台裝置操作。
 
+雲端設定完成後，可執行 `node --use-system-ca --env-file=.env.local scripts/check-supabase.mjs` 做唯讀檢查。加上 `--write` 會使用獨立暫存紀錄測試新增、更新、不同連線讀取及衝突，最後清除；請先執行第二份 migration。腳本不輸出金鑰。若測試被中斷，可用輸出的暫存 ID 搭配 `--cleanup-probe ID` 清除該筆紀錄。
+
 - [src/app.js](src/app.js)：模板介面與操作。
 - [src/store.js](src/store.js)：儲存佇列、錯誤狀態與重新載入。
 - [src/records.js](src/records.js)：UI 資料與資料庫紀錄的轉換、差異比對。
-- [src/repository.js](src/repository.js)：本機／Supabase 資料存取。
+- [src/repository.js](src/repository.js)：Supabase 資料存取。
+- [src/config.js](src/config.js)、[vite.config.js](vite.config.js)：執行時與建置時的必要資料庫設定檢查。
 - [src/seed.json](src/seed.json)：模板範例資料。修改後執行 `node scripts/generate-seed.mjs` 重新產生 SQL；不會自動更動已存在的資料庫。

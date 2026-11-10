@@ -2,7 +2,7 @@ import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { PGlite } from '@electric-sql/pglite';
-import { toRecords, fromRecords, diffRecords, applyChanges, equal } from '../src/records.js';
+import { toRecords, fromRecords, diffRecords, equal } from '../src/records.js';
 
 const seed = JSON.parse(await fs.readFile(new URL('../src/seed.json', import.meta.url)));
 const initial = toRecords(seed.defaultState, seed.users);
@@ -11,6 +11,7 @@ before(async () => {
   db = new PGlite();
   await db.exec('create role anon; create role authenticated;');
   await db.exec(await fs.readFile(new URL('../supabase/migrations/001_schema.sql', import.meta.url), 'utf8'));
+  await db.exec(await fs.readFile(new URL('../supabase/migrations/002_conflict_http_status.sql', import.meta.url), 'utf8'));
   await db.exec(await fs.readFile(new URL('../supabase/seed.sql', import.meta.url), 'utf8'));
 });
 after(async () => { await db?.close(); });
@@ -23,13 +24,6 @@ test('records round trip retains schedules, roles, surveys and stable member IDs
   assert.deepEqual(loaded.state.prayerSurvey, seed.defaultState.prayerSurvey);
   assert.equal(diffRecords(initial, toRecords(loaded.state, loaded.users)).length, 0);
   assert.equal(initial.find(row => row.table === 'assignments').member_id, 'member-006');
-});
-test('local mode rejects stale changes without mutating its input', () => {
-  const row = initial.find(row => row.table === 'survey_responses');
-  const change = {table: row.table, id: row.id, before: row, after: {...row, data: {...row.data, response: {...row.data.response, note: 'edited'}}}};
-  const updated = applyChanges(initial, [change]);
-  assert.throws(() => applyChanges(updated, [change]), /其他人修改/);
-  assert.notEqual(row.data.response.note, 'edited');
 });
 test('database is closed by default; demo grants expose only RPCs', async () => {
   await db.exec('set role anon');
@@ -47,7 +41,7 @@ test('two members can save independently, same member stale edit is rejected', a
   const changes = responses.slice(0, 2).map((row, index) => ({table: row.table, id: row.id, before: row, after: {...row, data: {...row.data, response: {...row.data.response, note: `member ${index}`, availability: {'12/7': 'no'}}}}}));
   await commit([changes[0]]);
   await commit([changes[1]]);
-  await assert.rejects(() => commit([changes[0]]), /其他人修改/);
+  await assert.rejects(() => commit([changes[0]]), error => error.code === 'PT409' && /其他人修改/.test(error.message));
   const loaded = fromRecords(await snapshot());
   assert.equal(Object.values(loaded.state.prayerSurvey.monday).filter(r => r.availability?.['12/7'] === 'no').length, 2);
 });

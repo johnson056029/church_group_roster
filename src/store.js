@@ -1,9 +1,8 @@
-import seed from './seed.json';
 import { createRepository } from './repository.js';
 import { toRecords, fromRecords, diffRecords } from './records.js';
 
-export const users = structuredClone(seed.users);
-export const state = structuredClone(seed.defaultState);
+export const users = [];
+export const state = {...fromRecords([]).state, currentUser: null, currentGroup: null};
 export const LEVEL_RANK = { '無': 0, '成長班（含在上）': 1, '門徒班（含在上）': 2, '領袖班結業': 3 };
 export const SERVICES = ['會前禱告', '破冰', '敬拜', '音控', '見證', '異象報告', '話語'];
 const sessionKey = 'group-life-selection-v1';
@@ -20,16 +19,16 @@ function setSnapshot(rows) {
   if (!state.groups[state.currentGroup]) state.currentGroup = Object.keys(state.groups)[0];
   baseline = toRecords(state, users);
 }
-function savedStatus() { status(repository.mode === 'cloud' ? '已儲存至 Supabase（共用測試資料）' : '已儲存在此瀏覽器（尚未連接雲端）'); }
+function savedStatus() { status('已儲存至 Supabase（共用測試資料）'); }
 export async function initialize() {
   try {
-    repository = createRepository(toRecords(state, users));
+    repository = createRepository();
     const session = loadSession();
     state.currentGroup = session?.currentGroup || state.currentGroup;
     setSnapshot(await repository.load());
     state.currentUser = users.find(user => user.id === session?.currentMemberId)?.name || null;
     ready = true;
-    savedStatus();
+    status('已連接 Supabase 資料庫');
     return true;
   } catch (error) { status(`載入失敗：${error.message}。請檢查設定後重新整理。`); return false; }
 }

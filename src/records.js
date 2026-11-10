@@ -90,12 +90,3 @@ export function diffRecords(before, after) {
   for (const [key, row] of old) if (!next.has(key)) changes.push({table: row.table, id: row.id, before: row, after: null});
   return changes;
 }
-export function applyChanges(rows, changes) {
-  const records = new Map(rows.map(row => [recordKey(row), copy(row)]));
-  for (const change of changes) {
-    const key = `${change.table}:${change.id}`;
-    if (!equal(records.get(key) || null, change.before)) throw new Error('資料已被其他人修改，請重新載入後再操作。');
-    if (change.after) records.set(key, copy(change.after)); else records.delete(key);
-  }
-  return [...records.values()];
-}
